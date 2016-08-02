@@ -13,6 +13,23 @@ Tags: penework
 ```
 penework是一个开源的渗透测试框架，主要是受到猪猪侠乌云峰会上的ppt的启发，才准备着手开发自己的渗透测试框架，并且主要根据[pocsuite](https://github.com/knownsec/Pocsuite)和[sqlmap](https://github.com/sqlmapproject/sqlmap)开发，其中还借鉴了很多优秀的开源工具的思路和相关代码，完全不用于商业用途，只是自己对所学知识的利用，并通过开发来锻炼自己的能力。
 
+
+# 依赖
+1. python 2.7
+2. redis
+3. requests
+4. pudb(debug)
+5. rq(分布式框架消息队列)
+6. bs4
+7. lxml
+   ubuntu 14.04
+   ```
+   sudo apt-get install libxml2-dev libxslt-dev python-dev
+   pip install lxml
+   ```
+
+
+
 # 爬虫部分
 
 ```
