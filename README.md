@@ -22,6 +22,7 @@ penework是一个开源的渗透测试框架，主要是受到猪猪侠乌云峰
 5. rq(分布式框架消息队列)
 6. bs4
 7. lxml
+
    ubuntu 14.04
    ```
    sudo apt-get install libxml2-dev libxslt-dev python-dev
