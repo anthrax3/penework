@@ -15,19 +15,25 @@ penework是一个开源的渗透测试框架，主要是受到猪猪侠乌云峰
 
 
 # 依赖
+环境
 1. python 2.7
-2. redis
+2. redis 
+3. mongodb
+
+python库
+1. redis
+2. pymongo
 3. requests
 4. pudb(debug)
 5. rq(分布式框架消息队列)
 6. bs4
 7. lxml
 
-   ubuntu 14.04
-   ```
-   sudo apt-get install libxml2-dev libxslt-dev python-dev
-   pip install lxml
-   ```
+	ubuntu 14.04
+	```
+	sudo apt-get install libxml2-dev libxslt-dev python-dev
+	pip install lxml
+	```
 
 
 
@@ -115,6 +121,9 @@ tmpVisit(list)
 
 visit(list)
 > 存储即将访问的url
+
+
+### 数据存储(mongodb)
 
 
 # TODO
