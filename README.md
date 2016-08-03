@@ -126,10 +126,51 @@ visit(list)
 
 
 ### 数据存储(mongodb)
+数据存储用了开源的NoSQL数据库--MongoDB
+MongoDB的安装
+```
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+echo "deb http://repo.mongodb.org/apt/ubuntu trusty/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+sudo apt-get update
+sudo apt-get install -y mongodb-org
+```
 
+为了保证数据的安全性，建议采取认证连接，默认情况下，连接不会进行认证，认证的话需要auth选项
+```
+mongod --auth
+```
+具体如何创建认证以及如何认证，可以看[官方手册](https://docs.mongodb.com/manual/tutorial/enable-authentication/)
+这里简单的介绍一下，首先创建一个管理账户
+
+```
+> use admin
+> db.createUser({
+... user:'myadmin',
+... pwd:'adminpasswd',
+... roles:[{role:'userAdminAnyDatabase', db:'admin'
+... })
+```
+创建完管理账户，该账户没有权限对我们将来存储数据的数据库做任何数据的增删改查，我们需要在该数据库上创建可读写的用户
+假设我们创建了存储数据的数据库，名称为website，之后可以这么操作
+
+```
+> use admin
+> db.auth('myadmin', 'adminpasswd')
+> db.createUser({
+... user: 'websiteWriter',
+... pwd: 'webpasswd',
+... roles: [{role:'readWrite', db:'website'}]
+... })
+```
+之后，将创建的用户名和密码填入`penework.conf`中
+```
+MONGODB_AUTH_USER
+MONGODB_AUTH_PASSWD
+```
 
 # TODO
 - [ ] autosqlmapi
 - [ ] struts2 scan
 - [ ] dirbrute
 - [ ] many poc and exp to add 
+
