@@ -27,16 +27,12 @@ def getConfig():
         config = ConfigParser()
         configFile = paths.PENEWORK_ROOT_PATH + '/penework.conf'
         config.read(configFile)
-        crawl_section = 'Crawler'
-        conf.REDIS_HOST = config.get(crawl_section, 'REDIS_HOST')
-        conf.REDIS_PORT = config.get(crawl_section, 'REDIS_PORT')
-        conf.REDIS_PASSWD = config.get(crawl_section, 'REDIS_PASSWD')
-        conf.CRAWL_SITE = config.get(crawl_section, 'CRAWL_SITE')
-        conf.CRAWL_DEPTH = config.get(crawl_section, 'CRAWL_DEPTH')
-        conf.STORE_FILENAME = config.get(crawl_section, 'STORE_FILENAME')
-        # conf.REDIS_CONNECTION = Redis(host=conf.REDIS_HOST,
-                                      # port=conf.REDIS_PORT,
-                                      # password=conf.REDIS_PASSWD)
+        for section in config.sections():
+            for option in config.options(section):
+                OPTION = option.upper()
+                conf[OPTION] = config.get(section, option)
+                if conf[OPTION].isdigit():
+                    conf[OPTION] = int(conf[OPTION])
 
     except Exception, ex:
         logger.log(CUSTOM_LOGGING.ERROR, 'get config error: ' + ex.message)

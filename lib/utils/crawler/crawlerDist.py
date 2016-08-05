@@ -21,6 +21,7 @@ from lib.core.enums import HTTP_HEADER
 from lib.core.common import findPageForms
 from lib.core.threads import runThreads
 from lib.utils.userAgents import randomUserAgents
+from lib.utils.crawler.store import getDB
 from thirdparty import requests
 from lib.utils.urlOperate import hashUrl
 
@@ -42,8 +43,6 @@ def crawl(url, currentDepth, countUrls):
     redisCon = Redis(host=conf.REDIS_HOST,
                       port=conf.REDIS_PORT,
                       password=conf.REDIS_PASSWD)
-    # if redisCon.sismember('visited', url):
-        # return
 
     try:
         headers = dict()
@@ -59,10 +58,11 @@ def crawl(url, currentDepth, countUrls):
         hashData = hashUrl(url)
         redisCon.sadd('visited', hashData)
         redisCon.lpush('visitedList', url)
+        getDB().insert({'url':url, 'depth': currentDepth, 'count':countUrls})
 
     except Exception, ex:
         logger.log(CUSTOM_LOGGING.ERROR, ex)
-        print traceback.print_exc()
+        # print traceback.print_exc()
         return
 
     if isinstance(content, unicode):

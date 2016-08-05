@@ -9,7 +9,9 @@ Tags: penework
 |  _ \ / _  )  _ \ / _  ) | | |/ _ \ / ___) | / )
 | | | ( (/ /| | | ( (/ /| | | | |_| | |   | |< (
 | ||_/ \____)_| |_|\____)\____|\___/|_|   |_| \_)
-|_|                                               
+| |         
+|_|    version: 0.1.0 by daitaomail@gmail.com
+
 ```
 penework是一个开源的渗透测试框架，主要是受到猪猪侠乌云峰会上的ppt的启发，才准备着手开发自己的渗透测试框架，并且主要根据[pocsuite](https://github.com/knownsec/Pocsuite)和[sqlmap](https://github.com/sqlmapproject/sqlmap)开发，其中还借鉴了很多优秀的开源工具的思路和相关代码，完全不用于商业用途，只是自己对所学知识的利用，并通过开发来锻炼自己的能力。
 
@@ -127,6 +129,7 @@ visit(list)
 
 ### 数据存储(mongodb)
 数据存储用了开源的NoSQL数据库--MongoDB
+
 MongoDB的安装
 ```
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
@@ -147,9 +150,16 @@ mongod --auth
 > db.createUser({
 ... user:'myadmin',
 ... pwd:'adminpasswd',
-... roles:[{role:'userAdminAnyDatabase', db:'admin'
+... roles:[{role:'userAdminAnyDatabase', db:'admin'}]
 ... })
 ```
+
+把创建的这个帐号填入`penework.conf`中
+```
+MONDODB_ADMIN_USER = 
+MONGODB_ADMIN_PASSWD = 
+```
+
 创建完管理账户，该账户没有权限对我们将来存储数据的数据库做任何数据的增删改查，我们需要在该数据库上创建可读写的用户
 假设我们创建了存储数据的数据库，名称为website，之后可以这么操作
 
@@ -162,10 +172,11 @@ mongod --auth
 ... roles: [{role:'readWrite', db:'website'}]
 ... })
 ```
-之后，将创建的用户名和密码填入`penework.conf`中
+
+上面这个操作，在初始化数据库时，会自动完成，只需要在配置文件中填入相应的信息即可
 ```
-MONGODB_AUTH_USER
-MONGODB_AUTH_PASSWD
+MONGODB\_MANAGE\_USER = 
+MONGODB\_MANAGE\_PASSWD =
 ```
 
 # TODO
@@ -173,4 +184,10 @@ MONGODB_AUTH_PASSWD
 - [ ] struts2 scan
 - [ ] dirbrute
 - [ ] many poc and exp to add 
+
+
+# 相关链接
+
+* [开发日志](./docs/CHANGELOG.md)
+* [版权说明](./docs/LISCENCE.txt)
 

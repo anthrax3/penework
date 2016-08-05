@@ -13,8 +13,8 @@ from lib.core.data import conf
 from lib.core.data import logger
 from lib.core.enums import CUSTOM_LOGGING
 from lib.utils.crawler.crawlerDist import crawl
-# from lib.utils.crawler.crawler import test
 from lib.utils.urlOperate import hashUrl
+from lib.utils.crawler.store import initDB
 
 
 class Master(object):
@@ -31,6 +31,8 @@ class Master(object):
 
 
     def start(self):
+
+        initDB()
 
         countDepth = 0
         countUrls = 0
