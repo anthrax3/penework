@@ -1,6 +1,5 @@
 ﻿# penework document(不断完善中...)
-
-Tags: penework
+[![Python 2.6|2.7](https://img.shields.io/badge/python-2.6|2.7-yellow.svg)](https://www.python.org/) [![License](https://img.shields.io/badge/license-GPLv2-red.svg)](https://github.com/xinali/penework/blob/master/docs/LICENSE.txt)
 
 
 ```
@@ -175,8 +174,8 @@ MONGODB_ADMIN_PASSWD =
 
 上面这个操作，在初始化数据库时，会自动完成，只需要在配置文件中填入相应的信息即可
 ```
-MONGODB\_MANAGE\_USER = 
-MONGODB\_MANAGE\_PASSWD =
+MONGODB_MANAGE_USER = 
+MONGODB_MANAGE_PASSWD =
 ```
 
 # TODO
@@ -189,5 +188,5 @@ MONGODB\_MANAGE\_PASSWD =
 # 相关链接
 
 * [开发日志](./docs/CHANGELOG.md)
-* [版权说明](./docs/LISCENCE.txt)
+* [版权说明](./docs/LICENSE.txt)
 
