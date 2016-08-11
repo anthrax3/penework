@@ -17,12 +17,11 @@ from urllib import quote
 
 from lib.core.data import conf
 from lib.core.enums import CUSTOM_LOGGING
-from setEnvironment import setEnv
-from setEnvironment import getConfig
 from lib.utils.crawler.master import Master
 from lib.utils.crawler.crawler import crawl
 from lib.core.data import logger
 from lib.utils.hashUrl import hashUrl
+from lib.core.common import setEnvConfig
 
 
 def testHashurl():
@@ -112,8 +111,7 @@ def unquoteUrl():
 
 def main():
 
-    setEnv()
-    getConfig()
+    setEnvConfig()
     unquoteUrl()
     # getVisitUrl()
     # testCrawlerDist()

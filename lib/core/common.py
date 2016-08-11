@@ -17,6 +17,7 @@ import posixpath
 import marshal
 import unicodedata
 import urlparse
+from ConfigParser import ConfigParser
 from StringIO import StringIO
 from lib.core.convert import base64pickle
 from lib.core.convert import base64unpickle
@@ -34,7 +35,6 @@ from lib.core.data import paths
 from lib.core.data import kb
 from lib.core.data import logger
 from lib.core.data import paths
-# from lib.core.data import formData
 from lib.core.exception import PeneworkGenericException
 from thirdparty.odict.odict import OrderedDict
 from lib.core.settings import (BANNER, GIT_PAGE, ISSUES_PAGE, PLATFORM, PYVERSION, VERSION_STRING)
@@ -598,3 +598,26 @@ def getSafeExString(ex, encoding=None):
         retVal = ex.msg
 
     return getUnicode(retVal, encoding=encoding)
+
+
+
+def setEnvConfig():
+    paths.PENEWORK_ROOT_PATH = os.path.dirname(os.path.realpath(__file__))
+    setPaths()
+
+    try:
+
+        config = ConfigParser()
+        configFile = paths.PENEWORK_ROOT_PATH + '/penework.conf'
+        config.read(configFile)
+        for section in config.sections():
+            for option in config.options(section):
+                OPTION = option.upper()
+                conf[OPTION] = config.get(section, option)
+                if conf[OPTION].isdigit():
+                    conf[OPTION] = int(conf[OPTION])
+
+    except Exception, ex:
+        logger.log(CUSTOM_LOGGING.ERROR, 'get config error: ' + ex.message)
+
+
