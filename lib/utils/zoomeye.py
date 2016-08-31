@@ -85,5 +85,6 @@ class Zoomeye(object):
 
 
 if __name__ == "__main__":
-    z = Zoomeye("RSjz3c")
+    # z = Zoomeye("RSjz3c")
+    z = Zoomeye("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGl0eSI6ImRhaXRhb21haWxAZ21haWwuY29tIiwiaWF0IjoxNDcxNzgwMTY0LCJuYmYiOjE0NzE3ODAxNjQsImV4cCI6MTQ3MTgyMzM2NH0.J-BOH7pv3AV10bgYGMLUJAzBoDTyE8lsxDnhi5kaonQ")
     print z.search("port:80")

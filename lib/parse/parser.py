@@ -11,8 +11,20 @@ from lib.core.data import defaults
 from lib.core.settings import INDENT, USAGE, VERSION
 from thirdparty.argparse import argparse
 
+from optparse import OptionParser
+from optparse import OptionGroup
+
 
 def parseCmdOptions():
+
+	parser = OptionParser()
+
+
+
+
+
+
+def parseCmdOptionsbak():
     """
     @function parses the command line parameters and arguments
     """

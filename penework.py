@@ -1,6 +1,4 @@
 #!/usr/bin/env python
-# encoding: utf-8
-# encoding: utf-8
 #encoding: utf-8
 
 import os
@@ -121,6 +119,5 @@ def main():
 
 if __name__ == '__main__':
     os.system('clear')
-
 
     main()
